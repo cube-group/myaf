@@ -8,21 +8,15 @@
 
 namespace libs\Cache;
 
-//extension check.
-if (!extension_loaded('memcache')) {
-    throw new \Exception('Ext memcache is not exist!');
-}
-
-use \Memcache;
-use \Exception;
+use Memcached;
 
 /**
  * Class LMemcache
- * @method set ($key, $var, $flag, $expire)
- * @method get ($key, &$flags)
+ * @method set ($key, $var, $expire = 0)
+ * @method get ($key)
  * @package libs\Cache
  */
-class LMemcache extends LCache
+class LMemcache implements ICache
 {
     /**
      * 限制函数名
@@ -36,7 +30,7 @@ class LMemcache extends LCache
     }
 
     /**
-     * @var Memcache
+     * @var Memcached
      */
     protected $memcache;
 
@@ -56,6 +50,15 @@ class LMemcache extends LCache
         }
     }
 
+    public function close($error = '')
+    {
+        // TODO: Implement close() method.
+        if($this->memcache){
+            $this->close();
+            $this->memcache = null;
+        }
+    }
+
     /**
      * DataStore constructor.
      * @param $options array
@@ -66,26 +69,11 @@ class LMemcache extends LCache
      */
     public function configure($options)
     {
-        try {
-            $this->memcache = new Memcache();
-            $this->memcache->connect(
-                $options["host"],
-                $options["port"],
-                isset($options['timeout']) ? $options['timeout'] : 3
-            );
-        } catch (Exception $e) {
-            $this->close($e->getMessage());
-        }
-    }
-
-    public function close($error = '')
-    {
-        parent::close($error);
-
-        if ($this->memcache) {
-            $this->memcache->close();
-            $this->memcache = null;
-        }
+        $this->memcache = new Memcached();
+        $this->memcache->addServer(
+            $options["host"],
+            $options["port"]
+        );
     }
 
     /**

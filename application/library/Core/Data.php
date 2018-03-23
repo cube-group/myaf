@@ -73,7 +73,7 @@ class Data
     /**
      * 获取Redis连接操作实例LMemcache
      * @param $name string
-     * @return bool|LRedis
+     * @return bool|LMemcache
      * @throws Exception
      */
     public static function cache($name)
@@ -87,5 +87,53 @@ class Data
             self::$connections[$key] = new LMemcache($conf->memcache->$name->toArray());
         }
         return self::$connections[$key];
+    }
+
+    /**
+     * 关闭数据库连接
+     * @param $name string
+     * @return bool
+     */
+    public static function killDb($name)
+    {
+        $key = 'mysql-' . $name;
+        if ($conn = self::db($key)) {
+            $conn->close();
+            self::$connections[$key] = null;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 关闭redis连接
+     * @param $name string
+     * @return bool
+     */
+    public static function killRedis($name)
+    {
+        $key = 'redis-' . $name;
+        if ($conn = self::db($key)) {
+            $conn->close();
+            self::$connections[$key] = null;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 关闭memcached连接
+     * @param $name string
+     * @return bool
+     */
+    public static function killMemcache($name)
+    {
+        $key = 'memcache-' . $name;
+        if ($conn = self::db($key)) {
+            $conn->close();
+            self::$connections[$key] = null;
+            return true;
+        }
+        return false;
     }
 }

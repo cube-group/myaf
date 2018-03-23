@@ -1,6 +1,7 @@
 <?php
 
 use Core\ControlWeb;
+use Core\Data;
 use Core\G;
 
 /**
@@ -17,5 +18,17 @@ class DataController extends ControlWeb
     {
         $model = new UserModel();
         var_dump($model->find()->one(['id' => 1]));
+    }
+
+    public function memAction()
+    {
+        Data::cache('default')->set('test-key', time());
+        var_dump(Data::cache('default')->get('test-key'));
+    }
+
+    public function redisAction()
+    {
+        Data::redis('default')->set('test-key', time());
+        var_dump(Data::redis('default')->get('test-key'));
     }
 }

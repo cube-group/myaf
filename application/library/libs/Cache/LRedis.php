@@ -8,14 +8,8 @@
 
 namespace libs\Cache;
 
-//extension check.
-if (!extension_loaded('redis')) {
-    throw new \Exception('Extension redis is not exist!');
-}
-
 use \Redis;
 use \Exception;
-use \RedisException;
 
 /**
  * Class LRedis
@@ -41,7 +35,7 @@ use \RedisException;
  *
  * @package libs\Cache
  */
-class LRedis extends LCache
+class LRedis implements ICache
 {
     /**
      * 限制函数名.
@@ -80,6 +74,15 @@ class LRedis extends LCache
         $this->configure($options);
     }
 
+    public function close($error = '')
+    {
+        // TODO: Implement close() method.
+        if ($this->redis) {
+            $this->redis->close();
+            $this->redis = null;
+        }
+    }
+
     /**
      * DataStore constructor.
      *
@@ -99,35 +102,15 @@ class LRedis extends LCache
         if (!isset($options['timeout'])) {
             $options['timeout'] = 5;
         }
-        try {
-            $this->redis = new Redis();
-            $this->redis->connect($options["host"], $options["port"], $options['timeout']);
-            if (isset($options['password'])) {
-                $this->redis->auth($options["password"]);
-            }
-            if (isset($options['database'])) {
-                $this->redis->select($options['database']);
-            }
-        } catch (RedisException $e) {
-            $this->close($e->getMessage());
-        } catch (Exception $e) {
-            $this->close($e->getMessage());
+        $this->redis = new Redis();
+        $this->redis->connect($options["host"], $options["port"], $options['timeout']);
+        if (isset($options['password'])) {
+            $this->redis->auth($options["password"]);
+        }
+        if (isset($options['database'])) {
+            $this->redis->select($options['database']);
         }
     }
-
-    /*
-     * @use 关闭redis连接
-     */
-    public function close($error = '')
-    {
-        parent::close($error);
-
-        if ($this->redis) {
-            $this->redis->close();
-            $this->redis = null;
-        }
-    }
-
 
     /**
      * @param $name
