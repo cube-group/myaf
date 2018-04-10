@@ -13,7 +13,7 @@ use Base\File\LFile;
 
 /**
  * Class LLog
- * @package libs\Log
+ * @package Base\Log
  */
 class LLog
 {

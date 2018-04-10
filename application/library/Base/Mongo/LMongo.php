@@ -16,7 +16,7 @@ if (!extension_loaded('mongo')) {
 
 /**
  * Class LMongo
- * @package libs\Mongo
+ * @package Base\Mongo
  */
 class LMongo
 {

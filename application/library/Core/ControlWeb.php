@@ -1,7 +1,7 @@
 <?php
 
 namespace Core;
-use libs\Utils\HttpUtil;
+use Base\Utils\HttpUtil;
 
 /**
  * Class ControlWeb.

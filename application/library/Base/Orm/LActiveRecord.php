@@ -6,14 +6,14 @@ use ArrayAccess;
 use Exception;
 use IteratorAggregate;
 use JsonSerializable;
-use libs\Utils\Arrays;
+use Base\Utils\Arrays;
 use Serializable;
 use Countable;
 
 /**
  * Class LActiveRecord
  * @author chenqionghe
- * @package libs\Orm
+ * @package Base\Orm
  */
 abstract class LActiveRecord implements ArrayAccess, IteratorAggregate, JsonSerializable, Serializable, Countable
 {

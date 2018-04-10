@@ -10,7 +10,7 @@ namespace Base\Cache;
 
 /**
  * Interface ICache
- * @package libs\Cache
+ * @package Base\Cache
  */
 interface ICache
 {

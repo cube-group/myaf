@@ -5,7 +5,7 @@ namespace Base\Orm;
 /**
  * Class LActiveQuery
  * @author chenqionghe
- * @package libs\Orm
+ * @package Base\Orm
  */
 class LActiveQuery extends LDBKernel
 {

@@ -14,7 +14,7 @@ use Memcached;
  * Class LMemcache
  * @method set ($key, $var, $expire = 0)
  * @method get ($key)
- * @package libs\Cache
+ * @package Base\Cache
  */
 class LMemcache implements ICache
 {

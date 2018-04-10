@@ -1,7 +1,7 @@
 ### LMongo Fast Connection.
 * Mongo set the init config array.
 ```javascript
-use \libs\Mongo\LMongo;
+use \Base\Mongo\LMongo;
 require 'autoloader.php';
 $mongo = LMongo::factory([
     'host'=>'lcoalhost',

@@ -8,8 +8,8 @@
 
 namespace Core;
 
-use libs\Log\LLog;
-use libs\Utils\HttpUtil;
+use Base\Log\LLog;
+use Base\Utils\HttpUtil;
 use Yaf\Config\Ini;
 use Yaf\Config_Abstract;
 use Yaf\Loader;

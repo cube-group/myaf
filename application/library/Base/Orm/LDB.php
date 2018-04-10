@@ -14,7 +14,7 @@ use \PDOException;
 
 /**
  * Class LDB
- * @package libs\Orm
+ * @package Base\Orm
  */
 class LDB
 {

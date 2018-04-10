@@ -4,7 +4,7 @@ namespace Base\Orm;
 
 use ArrayIterator;
 use Exception;
-use libs\Utils\Arrays;
+use Base\Utils\Arrays;
 
 /**
  * 实现SPL接口方法 ArrayAccess, IteratorAggregate, JsonSerializable, Serializable, Countable
@@ -13,7 +13,7 @@ use libs\Utils\Arrays;
  * Class ArrayTrait
  *
  * @author chenqionghe
- * @package libs\Orm
+ * @package Base\Orm
  */
 trait ArrayTrait
 {

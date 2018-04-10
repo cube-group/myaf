@@ -33,7 +33,7 @@ use \Exception;
  * @method int del(string|array $key1, string $key2 = null, string $key3 = null)
  * @method int ttl(string $key)
  *
- * @package libs\Cache
+ * @package Base\Cache
  */
 class LRedis implements ICache
 {

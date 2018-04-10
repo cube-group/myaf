@@ -20,3 +20,5 @@
 [2018-04-10 17:25:39][84273][/test/data/getinfo][INFO](5acc8313468b4)["time (ms) 6"]
 [2018-04-10 17:36:52][88050][/test/view/index][INFO](5acc85b4be802)["time (ms) 215"]
 [2018-04-10 17:36:57][84273][/test/view/index][INFO](5acc85b9bea3b)["time (ms) 2"]
+[2018-04-10 18:13:43][84273][/test/view/index][INFO](5acc8e57308da)["time (ms) 8"]
+[2018-04-10 18:24:15][84273][/test/view/index][INFO](5acc90cf40134)["time (ms) 9"]

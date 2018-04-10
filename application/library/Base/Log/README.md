@@ -1,7 +1,7 @@
 # LLog-日志工具
 ### LLog的使用
 ```
-use libs\Log\LLog;
+use Base\Log\LLog;
 require 'autoloader.php';
 
 //LLog初始化

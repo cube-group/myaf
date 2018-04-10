@@ -105,7 +105,7 @@ var_dump($result);
 ###声明一个AR类
 实现tableName方法, 返回表名
 ```
-use libs\Orm\LActiveRecord;
+use Base\Orm\LActiveRecord;
 
 /**
  * Class Task
@@ -211,7 +211,7 @@ $task->getDirtyAttributes()
 /**
  * Class TaskQuery
  */
-class TaskQuery extends \libs\Orm\LActiveQuery
+class TaskQuery extends \Base\Orm\LActiveQuery
 {
     /**
      * 命名范围(自定义查询条件)
