@@ -8,6 +8,7 @@
 
 namespace Core;
 
+use Base\Mongo\LMongo;
 use Exception;
 use Base\Cache\LMemcache;
 use Base\Cache\LRedis;
@@ -47,6 +48,25 @@ class Data
                 $conf->mysql->$name->master->toArray(),
                 $conf->mysql->$name->slave ? $conf->mysql->$name->slave->toArray() : null
             );
+        }
+        return self::$connections[$key];
+    }
+
+    /**
+     * 获取Mongo操作实例
+     * @param $name string
+     * @return bool|LMongo
+     * @throws Exception
+     */
+    public static function mongo($name)
+    {
+        $conf = G::conf();
+        if (!$conf->mongodb || !$conf->mongodb->$name) {
+            throw new Exception("mongodb {$name} connection config is null");
+        }
+        $key = 'mongodb-' . $name;
+        if (!isset(self::$connections[$key])) {
+            self::$connections[$key] = LMongo::create($conf->mongodb->$name->toArray());
         }
         return self::$connections[$key];
     }

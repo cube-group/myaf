@@ -150,16 +150,30 @@ var_dump($result);
 ```
 * UPDATE
 ```
+coming soon...
 ```
 * INSERT
 ```
+coming soon...
 ```
 * DELETE
 ```
+coming soon...
 ```
 ### 操作redis
+coming soon...
 ### 操作memcache
+coming soon...
 ### 操作mongodb
+coming soon...
 ### 操作redis队列
+coming soon...
 ### 操作rabbitmq队列(HTTP RESTFUL API)
+coming soon...
 ### 操作log
+coming soon...
+### 轮子工具包
+* 请到根目录执行composer install
+* phpbase: https://github.com/cube-group/phpbase
+* lvalidator: https://github.com/cube-group/lvalidator
+* 以上轮子包基本够PHP研发使用
