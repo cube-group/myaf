@@ -6,7 +6,7 @@
  * Time: 下午10:54
  */
 
-namespace libs\Orm;
+namespace Base\Orm;
 
 use \PDO;
 use \Exception;
@@ -88,7 +88,6 @@ class LDB
      */
     public function __construct($options, $optionsSlave = null)
     {
-        var_dump($options);
         //extension check.
         if (!extension_loaded('pdo_mysql')) {
             throw new Exception('Ext pdo_mysql is not exist!');

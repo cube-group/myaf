@@ -6,7 +6,7 @@
  * Time: 下午12:20
  */
 
-namespace libs\Cache;
+namespace Base\Cache;
 
 use \Redis;
 use \Exception;

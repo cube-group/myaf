@@ -2,7 +2,6 @@
 
 use Core\ControlWeb;
 use Core\Data;
-use Core\G;
 
 /**
  * Class UsersController
@@ -20,6 +19,12 @@ class DataController extends ControlWeb
         var_dump($model->find()->one(['id' => 1]));
     }
 
+    public function mysqlAction()
+    {
+        $select = Data::db('default')->table('users');
+        var_dump($select->select('id'));
+    }
+
     public function memAction()
     {
         Data::cache('default')->set('test-key', time());
@@ -30,5 +35,10 @@ class DataController extends ControlWeb
     {
         Data::redis('default')->set('test-key', time());
         var_dump(Data::redis('default')->get('test-key'));
+    }
+
+    public function getInfoAction()
+    {
+        var_dump((new UserModel())->getUserInfo());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace libs\Utils;
+namespace Base\Utils;
 
 /**
  * 分页工具

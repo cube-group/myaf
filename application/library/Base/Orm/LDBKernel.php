@@ -6,7 +6,7 @@
  * Time: 下午2:21
  */
 
-namespace libs\Orm;
+namespace Base\Orm;
 
 /**
  * Class LDBKernel.

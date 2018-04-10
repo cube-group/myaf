@@ -22,6 +22,7 @@ class RouterPlugin extends Plugin_Abstract
         if (!$request->isCli()) {
             $dispatcher = Dispatcher::getInstance();
             $dispatcher->catchException(true);
+            //support url route query string params r
             $dispatcher->getRouter()->addRoute("local", new Supervar('r'));
             return;
         }

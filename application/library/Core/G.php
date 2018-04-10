@@ -61,6 +61,7 @@ final class G
         );
     }
 
+
     /**
      * 获取业务级别的全局配置
      * @return Ini
@@ -68,20 +69,6 @@ final class G
     public static function conf()
     {
         return Registry::get(R::INI_CONF);
-    }
-
-    /**
-     * 追加INI配置到全局Registry配置中
-     * @param $key string
-     * @param $ini Ini
-     * @return bool|Ini
-     */
-    public static function ini($key, $ini = null)
-    {
-        if ($ini) {
-            return Registry::set($key, $ini);
-        }
-        return Registry::get($key);
     }
 
     /**

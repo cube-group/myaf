@@ -6,7 +6,7 @@
  * Time: 上午10:48
  */
 
-namespace libs\Utils;
+namespace Base\Utils;
 
 /**
  * Class DownloadHeader

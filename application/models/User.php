@@ -1,7 +1,7 @@
 <?php
 
 use Core\Data;
-use libs\Orm\LActiveRecord;
+use Base\Orm\LActiveRecord;
 
 /**
  * Class UserModel.
@@ -25,6 +25,7 @@ class UserModel extends LActiveRecord
      */
     public function getUserInfo()
     {
+        return $a;
         return ['id' => 1, 'username' => 'test', 'password' => 'xx', 'p1' => 'p1', 'p2' => 'p2'];
     }
 }

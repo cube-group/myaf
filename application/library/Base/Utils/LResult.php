@@ -6,7 +6,7 @@
  * Time: 下午10:44
  */
 
-namespace libs\Utils;
+namespace Base\Utils;
 
 /**
  * 简单的类库日志工具

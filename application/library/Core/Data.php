@@ -9,9 +9,9 @@
 namespace Core;
 
 use Exception;
-use libs\Cache\LMemcache;
-use libs\Cache\LRedis;
-use libs\Orm\LDB;
+use Base\Cache\LMemcache;
+use Base\Cache\LRedis;
+use Base\Orm\LDB;
 
 /**
  * mysql、redis、memcached连接实例
@@ -113,7 +113,7 @@ class Data
     public static function killRedis($name)
     {
         $key = 'redis-' . $name;
-        if ($conn = self::db($key)) {
+        if ($conn = self::redis($key)) {
             $conn->close();
             self::$connections[$key] = null;
             return true;
@@ -129,7 +129,7 @@ class Data
     public static function killMemcache($name)
     {
         $key = 'memcache-' . $name;
-        if ($conn = self::db($key)) {
+        if ($conn = self::cache($key)) {
             $conn->close();
             self::$connections[$key] = null;
             return true;

@@ -1,6 +1,6 @@
 <?php
 
-namespace libs\Orm;
+namespace Base\Orm;
 
 use ArrayAccess;
 use Exception;
@@ -70,7 +70,7 @@ abstract class LActiveRecord implements ArrayAccess, IteratorAggregate, JsonSeri
 
     /**
      * 数据连接LDB
-     * @return mixed
+     * @return LDB
      */
     abstract function database();
 

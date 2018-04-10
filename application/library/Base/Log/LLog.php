@@ -6,10 +6,10 @@
  * Time: 下午4:48
  */
 
-namespace libs\Log;
+namespace Base\Log;
 
 use Exception;
-use libs\File\LFile;
+use Base\File\LFile;
 
 /**
  * Class LLog
@@ -20,7 +20,7 @@ class LLog
     /**
      * 日志唯一id.
      */
-    const LOG_HUNTER = 'fykcRequestHunter';
+    const LOG_HUNTER = 'yafRequest';
 
 
     /**

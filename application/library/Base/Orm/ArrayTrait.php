@@ -1,6 +1,6 @@
 <?php
 
-namespace libs\Orm;
+namespace Base\Orm;
 
 use ArrayIterator;
 use Exception;

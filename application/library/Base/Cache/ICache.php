@@ -6,7 +6,7 @@
  * Time: 下午2:36
  */
 
-namespace libs\Cache;
+namespace Base\Cache;
 
 /**
  * Interface ICache

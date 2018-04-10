@@ -1,5 +1,6 @@
 <?php
-namespace libs\File;
+
+namespace Base\File;
 
 /**
  * Class FS.
