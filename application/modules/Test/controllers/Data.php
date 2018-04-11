@@ -37,6 +37,14 @@ class DataController extends ControlWeb
         var_dump(Data::redis('default')->get('test-key'));
     }
 
+    public function mongoAction()
+    {
+        $rt = Data::mongo()->model('collect')->save(['a' => 1]);
+        var_dump($rt);
+        $rt = Data::mongo()->model('collect')->findOne(['a' => 1]);
+        var_dump($rt);
+    }
+
     public function getInfoAction()
     {
         var_dump((new UserModel())->getUserInfo());

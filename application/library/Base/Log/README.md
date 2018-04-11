@@ -35,7 +35,7 @@ LLog::flush();
 [年-月-日 时:分:秒][进程id][文件地址][类别][app-name][requestId]...
 ```
 ### 如何保证http访问时requestId的传递性?
-请使用\libs\Curl\LCurl进行http数据访问
+请使用\Base\Curl\LCurl进行http数据访问
 ```
 ...
 $curl = new LCurl();

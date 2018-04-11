@@ -4,7 +4,7 @@ namespace Base\Utils;
 
 /**
  * Class Arrays
- * @package libs\Utils
+ * @package Base\Utils
  */
 class Arrays
 {

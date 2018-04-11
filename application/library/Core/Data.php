@@ -15,7 +15,7 @@ use Base\Cache\LRedis;
 use Base\Orm\LDB;
 
 /**
- * mysql、redis、memcached连接实例
+ * mysql、mongodb、redis、memcache连接实例
  * Class Data
  * @package Core
  */
@@ -25,7 +25,7 @@ class Data
      * 连接队列
      * @var array
      */
-    private static $connections;
+    private static $connections = [];
 
     /**
      * 获取数据库连接操作实例LDB
@@ -33,7 +33,7 @@ class Data
      * @return bool|LDB
      * @throws Exception
      */
-    public static function db($name)
+    public static function db($name = 'default')
     {
         $conf = G::conf();
         if (!$conf->mysql || !$conf->mysql->$name) {
@@ -58,15 +58,15 @@ class Data
      * @return bool|LMongo
      * @throws Exception
      */
-    public static function mongo($name)
+    public static function mongo($name = 'default')
     {
         $conf = G::conf();
-        if (!$conf->mongodb || !$conf->mongodb->$name) {
-            throw new Exception("mongodb {$name} connection config is null");
+        if (!$conf->mongo || !$conf->mongo->$name) {
+            throw new Exception("mongo {$name} connection config is null");
         }
-        $key = 'mongodb-' . $name;
+        $key = 'mongo-' . $name;
         if (!isset(self::$connections[$key])) {
-            self::$connections[$key] = LMongo::create($conf->mongodb->$name->toArray());
+            self::$connections[$key] = new LMongo($conf->mongo->$name->toArray());
         }
         return self::$connections[$key];
     }
@@ -77,7 +77,7 @@ class Data
      * @return bool|LRedis
      * @throws Exception
      */
-    public static function redis($name)
+    public static function redis($name = 'default')
     {
         $conf = G::conf();
         if (!$conf->redis || !$conf->redis->$name) {
@@ -96,7 +96,7 @@ class Data
      * @return bool|LMemcache
      * @throws Exception
      */
-    public static function cache($name)
+    public static function cache($name = 'default')
     {
         $conf = G::conf();
         if (!$conf->memcache || !$conf->memcache->$name) {

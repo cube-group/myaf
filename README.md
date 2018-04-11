@@ -150,30 +150,59 @@ var_dump($result);
 ```
 * UPDATE
 ```
-coming soon...
+$table = Data::db('default')->table('users');
+$result = $table->where(['user' => 'a'])->update(['type' => 1]);
 ```
 * INSERT
 ```
-coming soon...
+$db = Data::db('default');
+$result = $db->table('list2')->insert(['type' => 1, 'user' => 'linnn']);
+var_dump($db->lastSql(), $db->lastInsertId(), $db->lastError());
+$result = $db->table('list2')->insertMulti(['type', 'user'], [[2, time() . '-hello'], [3, time() . '-hello'], [3, time() . '-hello']]);
+var_dump($db->lastSql(), $db->lastInsertId(), $db->lastError());
 ```
 * DELETE
 ```
-coming soon...
+$db = Data::db('default');
+$result = $db->table($name)->where($params)->delete()<br>');
+var_dump($db->lastSql(), $db->lastInsertId(), $db->lastError());
 ```
 ### 操作redis
-coming soon...
+```
+$result = Data::redis()->hGetAll('ssid-32f84c1912100c85eaf6c2db619d3ee6');
+```
 ### 操作memcache
-coming soon...
+```
+$result = Data::memcache()->get('xxx');
+```
 ### 操作mongodb
-coming soon...
+```
+$rt = Data::mongo()->model('collect')->save(['a' => 1]);
+var_dump($rt);
+$rt = Data::mongo()->model('collect')->findOne(['a' => 1]);
+var_dump($rt);
+```
 ### 操作redis队列
 coming soon...
 ### 操作rabbitmq队列(HTTP RESTFUL API)
 coming soon...
 ### 操作log
-coming soon...
-### 轮子工具包
+```
+//LLog初始化,app名称为name,日志存储路径为/data/log/name,非debug
+LLog::init('name', '/data/log/name', 'Asia/Shanghai', false);
+//debug日志
+LLog::info('功能1',__FILE__,'HelloWorld');
+LLog::info('功能1',__FILE__,'Json:',['status'=>'Y']);
+//错误日志
+LLog::error('功能2',__FILE__,'SendData:',['a'=>'123123']);
+//...logic
+//日志压栈存储
+LLog::flush();
+```
+详细查看Log包中的README
+### 更多工具包
 * 请到根目录执行composer install
 * phpbase: https://github.com/cube-group/phpbase
 * lvalidator: https://github.com/cube-group/lvalidator
 * 以上轮子包基本够PHP研发使用
+* 轮子工具包命名空间以\libs开头

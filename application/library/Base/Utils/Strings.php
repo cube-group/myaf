@@ -6,7 +6,7 @@ namespace Base\Utils;
  * 字符串工具
  *
  * Class Strings
- * @package libs\Strings
+ * @package Base\Strings
  */
 class Strings
 {

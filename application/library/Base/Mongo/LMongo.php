@@ -8,11 +8,8 @@
 namespace Base\Mongo;
 
 //extension check.
+use Exception;
 use MongoClient;
-
-if (!extension_loaded('mongo')) {
-    throw new \Exception('Ext mongo is not exist!');
-}
 
 /**
  * Class LMongo
@@ -24,7 +21,11 @@ class LMongo
      * Mongo connect instance.
      * @var MongoClient
      */
-    private $mongo;
+    protected $mongo;
+    /**
+     * @var \MongoDB
+     */
+    protected $db;
 
     /**
      * close the mongodb connection.
@@ -46,7 +47,7 @@ class LMongo
             return true;
         } catch (\MongoException $e) {
         } catch (\ErrorException $e) {
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
         }
         return false;
     }
@@ -128,21 +129,17 @@ class LMongo
      * @param $options array
      * @return $this
      */
-    public function connect($options)
+    protected function connect($options)
     {
         $this->close();
-        try {
-            $this->mongo = new MongoClient(
-                'mongodb://' . $options['host'] . ':' . $options['port'],
-                [
-                    'username' => $options['username'],
-                    'password' => $options['password'],
-                    'db' => $options['database']
-                ]
-            );
-        } catch (\Exception $e) {
-            $this->mongo = null;
-        }
+        $this->mongo = new MongoClient(
+            'mongodb://' . $options['host'] . ':' . $options['port'],
+            [
+                'username' => $options['username'],
+                'password' => $options['password'],
+            ]
+        );
+        $this->db = $this->mongo->selectDB($options['database']);
         return $this;
     }
 
@@ -150,26 +147,12 @@ class LMongo
     /**
      * 获取Mongo的Collection操作实例.
      * @param $collectionName
-     * @return bool|\MongoDB
+     * @return bool|\MongoCollection
      */
     public function model($collectionName)
     {
-        if ($this->mongo) {
-            return $this->mongo->$collectionName;
-        }
-        return false;
-    }
-
-    /**
-     * 以工厂模式创建Mongo实例
-     * @param $options array
-     * @return MongoClient|bool
-     */
-    public static function create($options)
-    {
-        $m = new LMongo($options);
-        if ($m->mongo) {
-            return $m;
+        if ($this->db) {
+            return $this->db->selectCollection($collectionName);
         }
         return false;
     }
