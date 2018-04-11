@@ -66,7 +66,7 @@ class AuthPlugin extends \Yaf\Plugin_Abstract{
 }
 ```
 其中Plugin支持的几种hook方式,请看官网<a href='http://www.laruence.com/manual/yaf.plugin.times.html'>yaf支持的hook</a><br>
-如有必须可以配合框架中的Router.php和Static.php两个插件文件学习
+可以配合框架中的Router.php和Static.php两个插件文件进行学习
 ### application/Bootstrap.php是什么?
 它是框架程序的一个入口.
 ```
@@ -91,6 +91,7 @@ Bootstrap.php中的所有以_init开头的函数会按照顺序自上而下执�
 以application/modules/Test/controllers/Rest.php为例<br>
 curl -X GET index.php?r=test/rest/users, 则命中GET_usersAction<br>
 curl -X POST index.php?r=test/rest/users, 则命中POST_usersAction<br>
+如果没有命中任何Action函数则命中_404Action<br>
 ```
 <?php
 
@@ -104,22 +105,14 @@ class RestController extends ControlRest
 {
     public function _404Action()
     {
-        $this->response(false, ['type' => $this->_request->method], 404);
     }
 
     public function GET_usersAction()
     {
-        $users = new UserModel();
-        $result = $users->find()->asArray()->select();
-        $this->response(true, ['type' => $this->_request->method, 'sql' => $users->getDb()->lastSql(), 'list' => $result], 200);
     }
 
     public function POST_usersAction()
     {
-        $users = new UserModel();
-        $users->name = time();
-        $result = $users->save();
-        $this->response(true, ['type' => $this->_request->method, 'result' => $result], 200);
     }
 }
 ```
