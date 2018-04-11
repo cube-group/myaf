@@ -48,7 +48,7 @@ yaf追求类导入简单化,在application目录下的controllers、library、mo
 里的标准命名类都无需require导入直接use即可自动获取。
 * controllers命名机制:Index.php
 ```
-use \Core\Control;
+use \Core\ControlWeb;
 
 class IndexController extends ControlWeb{
     public function indexAction(){}
