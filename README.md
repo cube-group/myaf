@@ -77,6 +77,51 @@ $app->bootstrap()->run();
 ```
 以上代码中$app->bootstrap()将会自动执行application/Bootstrap.php
 Bootstrap.php中的所有以_init开头的函数会按照顺序自上而下执行。
+### myaf的基类Control请不要进行修改
+* Base\Control - 抽象Control基类
+* Base\ControlConsole - 专门用于cli的Control类
+* Base\ControlRest - 专门用于web的restful风格的Control类
+* Base\ControlWeb - 专门用于web的传统风格的Control类(最常用)
+### 你最喜欢的便捷路由r
+* 我们支持最快速的url get参数"r"进行路由指定
+* index.php?r=test/data/info,就会命中Module为Test,Controller为DataController,Action为infoAction的函数
+* 当然此类路由方式尽量用于测试不建议用于生产环境 :)
+### myaf的restful处理
+以application/modules/Test/controllers/Rest.php为例<br>
+curl -X GET index.php?r=test/rest/users, 则命中GET_usersAction<br>
+curl -X POST index.php?r=test/rest/users, 则命中POST_usersAction<br>
+```
+<?php
+
+use Core\ControlRest;
+
+/**
+ * Class IndexController
+ * Restful Mode
+ */
+class RestController extends ControlRest
+{
+    public function _404Action()
+    {
+        $this->response(false, ['type' => $this->_request->method], 404);
+    }
+
+    public function GET_usersAction()
+    {
+        $users = new UserModel();
+        $result = $users->find()->asArray()->select();
+        $this->response(true, ['type' => $this->_request->method, 'sql' => $users->getDb()->lastSql(), 'list' => $result], 200);
+    }
+
+    public function POST_usersAction()
+    {
+        $users = new UserModel();
+        $users->name = time();
+        $result = $users->save();
+        $this->response(true, ['type' => $this->_request->method, 'result' => $result], 200);
+    }
+}
+```
 ### 全局配置(变量)的set和get
 * 但我们使用G进行了封装
 * 相关操作如下:
@@ -111,6 +156,13 @@ G::conf()->application->name;
 G::conf()->get('application')->toArray();
 G::conf()->application->toArray();
 ```
+### 多模块支持
+* 需要在conf/application.ini中配置(Index模块为application根目录下的controllers)
+```
+application.modules = "Index,Test"
+application.dispatcher.defaultModule = "Index"
+```
+* 子模块需要在application/modules中编写
 ### 以cli模式运行yaf
 ```
 //单模块模式
@@ -146,10 +198,6 @@ class IndexController extends ControlWeb
     }
 }
 ```
-### 便捷路由r
-* 我们支持最快速的url get参数"r"进行路由指定
-* index.php?r=test/data/info,就会命中Module为Test,Controller为DataController,Action为infoAction的函数
-* 当然此类路由方式尽量用于测试 :)
 ### 框架错误捕捉
 * common.error.report - 配置当前环境下的错误等级
 * common.error.display - 配置当前环境下是否报错(该选项作用不大)
