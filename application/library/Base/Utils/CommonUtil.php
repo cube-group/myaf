@@ -175,7 +175,7 @@ class CommonUtil
      */
     public static function isURL($v)
     {
-        return $v ? preg_match('/^(http|https)://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$/', $v) : false;
+        return $v ? preg_match('/http:\/\/[\w.]+[\w\/]*[\w.]*\??[\w=&\+\%]*/is', $v) : false;
     }
 
     /**

@@ -9,13 +9,17 @@
 namespace Core;
 
 use Base\Mongo\LMongo;
+use Base\Queue\LHttpRabbitMQ;
+use Base\Queue\LRabbitMQ;
+use Base\Queue\LRedisMQ;
 use Exception;
 use Base\Cache\LMemcache;
 use Base\Cache\LRedis;
 use Base\Orm\LDB;
 
 /**
- * mysql、mongodb、redis、memcache连接实例
+ * mysql、mongodb、redis、memcache、redis队列、rabbitmq队列等连接实例
+ * All Over The Framework :)
  * Class Data
  * @package Core
  */
@@ -105,6 +109,63 @@ class Data
         $key = 'memcache-' . $name;
         if (!isset(self::$connections[$key])) {
             self::$connections[$key] = new LMemcache($conf->memcache->$name->toArray());
+        }
+        return self::$connections[$key];
+    }
+
+    /**
+     * 获取LRedisMQ操作实例
+     * @param string $name
+     * @return mixed
+     * @throws Exception
+     */
+    public static function queueRedis($name = 'default')
+    {
+        $conf = G::conf();
+        if (!$conf->queue->redis || !$conf->queue->redis->$name) {
+            throw new Exception("queue.redis {$name} connection config is null");
+        }
+        $key = 'queue.redis-' . $name;
+        if (!isset(self::$connections[$key])) {
+            self::$connections[$key] = new LRedisMQ($conf->queue->redis->$name->toArray());
+        }
+        return self::$connections[$key];
+    }
+
+    /**
+     * 获取LHttpRabbitMQ操作实例
+     * @param string $name
+     * @return LHttpRabbitMQ
+     * @throws Exception
+     */
+    public static function queueHttpRabbit($name = 'default')
+    {
+        $conf = G::conf();
+        if (!$conf->queue->redis || !$conf->queue->redis->$name) {
+            throw new Exception("queue.rabbit {$name} connection config is null");
+        }
+        $key = 'queue.http.rabbit-' . $name;
+        if (!isset(self::$connections[$key])) {
+            self::$connections[$key] = new LHttpRabbitMQ($conf->queue->redis->$name->toArray());
+        }
+        return self::$connections[$key];
+    }
+
+    /**
+     * 获取LRabbitMQ操作实例
+     * @param string $name
+     * @return LRabbitMQ
+     * @throws Exception
+     */
+    public static function queueRabbit($name = 'default')
+    {
+        $conf = G::conf();
+        if (!$conf->queue->redis || !$conf->queue->redis->$name) {
+            throw new Exception("queue.rabbit {$name} connection config is null");
+        }
+        $key = 'queue.rabbit-' . $name;
+        if (!isset(self::$connections[$key])) {
+            self::$connections[$key] = new LRabbitMQ($conf->queue->redis->$name->toArray());
         }
         return self::$connections[$key];
     }

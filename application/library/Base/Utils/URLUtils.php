@@ -2,8 +2,6 @@
 
 namespace Base\Utils;
 
-use Base\Validate\LValidator;
-
 /**
  * Class URLUtil.
  * URL地址处理工具类.
@@ -32,7 +30,7 @@ class URLUtil
      */
     public static function addParameter($url, $params)
     {
-        if (!$url || !LValidator::isUrl($url)) {
+        if (!$url || !CommonUtil::isURL($url)) {
             return $url;
         }
         if ($params) {

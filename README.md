@@ -45,18 +45,11 @@ extension="/usr/local/opt/php56-yaf/yaf.so"
 ### yaf类自动引用机制
 yaf追求类导入简单化,在application目录下的controllers、library、models、plugins
 里的标准命名类都无需require导入直接use即可自动获取。
-* library命名机制:
-```
-namespace Core;
-
-abstract class Control extends Controller_Abstract{
-}
-```
 * controllers命名机制:Index.php
 ```
 use \Core\Control;
 
-class IndexController extends Control{
+class IndexController extends ControlWeb{
     public function indexAction(){}
 }
 ```
@@ -94,6 +87,15 @@ G::get('key');
 ```
 G::set('key','xxx');
 ```
+### conf/application.conf內容解释
+* [common] 代表公共配置
+* [xx:common] xx环境配置并且集成了common里的所有配置
+* [develop:common]
+```
+//index.php或者cli中
+$app = new \Yaf\Application(APP_CONFIG, APP_MODE);
+//其中APP_MODE如果为develop则会命中[develop:common]的所有配置
+```
 ### 获取配置文件conf/application.conf内容
 方式一:
 ```
@@ -122,6 +124,31 @@ $php bin/cli module/controller/action p1 p2
 注意:
 1. 单参数时,action函数接收的是值
 2. 多参数时,action函数接受的是数组
+### view模板渲染
+以application/controllers/Index.php为例<br>
+它对application/views/index/index.phtml文件进行了渲染<br>
+在index.phtml模板中可以直接使用$value变量
+```
+<?php
+
+use Core\ControlWeb;
+use Core\G;
+
+/**
+ * Class IndexController.
+ */
+class IndexController extends ControlWeb
+{
+    public function indexAction()
+    {
+        $this->display('index', ['value' => G::route()]);
+    }
+}
+```
+### 便捷路由r
+* 我们支持最快速的url get参数"r"进行路由指定
+* index.php?r=test/data/info,就会命中Module为Test,Controller为DataController,Action为infoAction的函数
+* 当然此类路由方式尽量用于测试 :)
 ### 框架错误捕捉
 * common.error.report - 配置当前环境下的错误等级
 * common.error.display - 配置当前环境下是否报错(该选项作用不大)
@@ -138,6 +165,7 @@ $php bin/cli module/controller/action p1 p2
 * 如果没有命中则会命中相应的module中的ErrorController::errorAction
 * 如果相应的module中没有ErrorController则命中application/controllers/Error.php中的errorAction
 ### 操作mysql
+Data::db($dbname);其中$dbname在application.ini中配置
 * SELECT
 ```
 $table = Data::db('default')->table('users');
@@ -167,15 +195,24 @@ $db = Data::db('default');
 $result = $db->table($name)->where($params)->delete()<br>');
 var_dump($db->lastSql(), $db->lastInsertId(), $db->lastError());
 ```
+* 执行复杂SQL
+LDB提供了底层sql执行
+```
+$db = Data::db('default');
+$result = $db->query('select ?,? from table',['id','username']);
+```
 ### 操作redis
+Data::redis($redisName);其中$redisName在application.ini中配置
 ```
 $result = Data::redis()->hGetAll('ssid-32f84c1912100c85eaf6c2db619d3ee6');
 ```
 ### 操作memcache
+Data::redis($memcacheName);其中$memcacheName在application.ini中配置
 ```
 $result = Data::memcache()->get('xxx');
 ```
 ### 操作mongodb
+Data::redis($mongodbName);其中$mongodbName在application.ini中配置
 ```
 $rt = Data::mongo()->model('collect')->insert(['a' => 1]);
 var_dump($rt);
@@ -183,13 +220,50 @@ $rt = Data::mongo()->model('collect')->findOne(['a' => 1]);
 var_dump($rt);
 ```
 ### 操作redis队列
-coming soon
+Data::queueRedis($redisName);其中$redisName在application.ini中配置
+```
+$queue = Data::queueRedis();
+//生产
+$bool = $queue->product('hello','channel_router_key');
+var_dump($bool);
+//消费
+$message = $queue->consume('channel_router_key');
+//处理消费数据...
+//最近一条消费数据是否在业务上成功,false则不会删除这条数据,true会删除
+$queue->consumeStatus(true);//or false
+```
 ### 操作rabbitmq队列(HTTP RESTFUL API)
-coming soon...
+Data::queueHttpRabbit($name);其中$name在application.ini中配置
+```
+$queue = Data::queueHttpRabbit();
+//生产
+$bool = $queue->product('hello','channel_router_key');
+var_dump($bool);
+//消费5条
+$message = $queue->consume('channel_router_key', 5);
+//处理消费数据...
+//最近一条消费数据是否在业务上成功,false则不会删除这条数据,true会删除
+$queue->consumeStatus(true);//or false
+```
+### 操作rabbitmq队列(以amqp扩展形式)
+Data::queueRabbit($name);其中$name在application.ini中配置
+```
+$queue = Data::queueRabbit();
+//生产
+$bool = $queue->product('hello','channel_router_key');
+var_dump($bool);
+//消费
+$message = $queue->consume('channel_router_key');
+//处理消费数据...
+//最近一条消费数据是否在业务上成功,false则不会删除这条数据,true会删除
+$queue->consumeStatus(true);//or false
+```
 ### 操作log
+你可以在任意Controller、Model类中使用LLog
 ```
 //LLog初始化,app名称为name,日志存储路径为/data/log/name,非debug
 LLog::init('name', '/data/log/name', 'Asia/Shanghai', false);
+//但是myaf框架已經在G類中初始化過了只需要LLog::info或debug或error即可
 //debug日志
 LLog::info('功能1',__FILE__,'HelloWorld');
 LLog::info('功能1',__FILE__,'Json:',['status'=>'Y']);

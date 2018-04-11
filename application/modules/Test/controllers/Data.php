@@ -45,7 +45,7 @@ class DataController extends ControlWeb
         var_dump($rt);
     }
 
-    public function getInfoAction()
+    public function infoAction()
     {
         var_dump((new UserModel())->getUserInfo());
     }

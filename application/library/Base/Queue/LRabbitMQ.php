@@ -9,8 +9,8 @@ use \AMQPQueueException;
 use \AMQPConnectionException;
 use \AMQPExchangeException;
 use \AMQPEnvelope;
-use Exception;
-use Base\Validate\LValidator;
+//use Exception;
+//use Base\Validate\LValidator;
 
 
 /**
@@ -55,7 +55,8 @@ class LRabbitMQ implements IMQ
     public function __construct($options = null)
     {
         /**
-         * ['host' => '192.168.1.93',
+         * [
+         * 'host' => '192.168.1.93',
          * 'port' => '5672',
          * 'login' => 'guest',
          * 'password' => 'guest',
@@ -71,17 +72,17 @@ class LRabbitMQ implements IMQ
         if (!$options) {
             return;
         }
-        $val = new LValidator($options);
-        $val->rules([
-            ['required', 'host'],
-            ['required', 'port'],
-            ['required', 'login'],
-            ['required', 'password'],
-            ['required', 'vhost']
-        ]);
-        if (!$val->validate()) {
-            throw new Exception('LHttpRabbitMQ options invalid');
-        }
+//        $val = new LValidator($options);
+//        $val->rules([
+//            ['required', 'host'],
+//            ['required', 'port'],
+//            ['required', 'login'],
+//            ['required', 'password'],
+//            ['required', 'vhost']
+//        ]);
+//        if (!$val->validate()) {
+//            throw new Exception('LHttpRabbitMQ options invalid');
+//        }
 
         $this->exchangeName = (isset($options['database']) && $options['database']) ? $options['database'] : 'amq.default';
         try {
