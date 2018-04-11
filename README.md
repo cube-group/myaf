@@ -65,7 +65,7 @@ class UserModel{
 class AuthPlugin extends \Yaf\Plugin_Abstract{
 }
 ```
-
+其中Plugin支持的几种hook方式,请看官网<a href='http://www.laruence.com/manual/yaf.plugin.times.html'>yaf支持的hook</a>
 ### application/Bootstrap.php是什么?
 它是框架程序的一个入口.
 ```
