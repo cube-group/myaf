@@ -1,6 +1,7 @@
 {
   "require": {
     "cube-group/phpbase": ">=1.1.8",
-    "cube-group/lvalidator": ">=1.1.1"
+    "cube-group/lvalidator": ">=1.1.1",
+    "mongodb/mongodb": "^1.3"
   }
 }

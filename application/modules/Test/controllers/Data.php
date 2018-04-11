@@ -39,9 +39,9 @@ class DataController extends ControlWeb
 
     public function mongoAction()
     {
-        $rt = Data::mongo()->model('collect')->save(['a' => 1]);
+        $rt = Data::mongo()->model('collect')->insertOne(['a' => 0]);
         var_dump($rt);
-        $rt = Data::mongo()->model('collect')->findOne(['a' => 1]);
+        $rt = Data::mongo()->model('collect')->findOne(['a' => 0]);
         var_dump($rt);
     }
 

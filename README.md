@@ -177,13 +177,13 @@ $result = Data::memcache()->get('xxx');
 ```
 ### 操作mongodb
 ```
-$rt = Data::mongo()->model('collect')->save(['a' => 1]);
+$rt = Data::mongo()->model('collect')->insert(['a' => 1]);
 var_dump($rt);
 $rt = Data::mongo()->model('collect')->findOne(['a' => 1]);
 var_dump($rt);
 ```
 ### 操作redis队列
-coming soon...
+coming soon
 ### 操作rabbitmq队列(HTTP RESTFUL API)
 coming soon...
 ### 操作log

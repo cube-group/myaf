@@ -7,9 +7,7 @@
  */
 namespace Base\Mongo;
 
-//extension check.
-use Exception;
-use MongoClient;
+use MongoDB\Client;
 
 /**
  * Class LMongo
@@ -19,38 +17,13 @@ class LMongo
 {
     /**
      * Mongo connect instance.
-     * @var MongoClient
+     * @var Client
      */
     protected $mongo;
     /**
      * @var \MongoDB
      */
     protected $db;
-
-    /**
-     * close the mongodb connection.
-     * @return bool
-     */
-    public function close()
-    {
-        if (!$this->mongo) {
-            return true;
-        }
-        try {
-            $connections = $this->mongo->getConnections();
-            foreach ($connections as $con) {
-                if ($con['connection']['connection_type_desc'] == "SECONDARY") {
-                    $this->mongo->close($con['hash']);
-                }
-            }
-            $this->mongo = null;
-            return true;
-        } catch (\MongoException $e) {
-        } catch (\ErrorException $e) {
-        } catch (Exception $e) {
-        }
-        return false;
-    }
 
     /**
      * get the Mongo collection.
@@ -118,12 +91,6 @@ class LMongo
         }
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-        $this->close();
-    }
-
     /**
      * 进行数据库正式连接.
      * @param $options array
@@ -131,15 +98,17 @@ class LMongo
      */
     protected function connect($options)
     {
-        $this->close();
-        $this->mongo = new MongoClient(
-            'mongodb://' . $options['host'] . ':' . $options['port'],
+        $this->mongo = new Client(
+            $options['url'],
             [
                 'username' => $options['username'],
                 'password' => $options['password'],
+                'ssl' => (bool)$options['tls'],
+//                'replicaSet' => 'myReplicaSet',
+                'authSource' => 'admin',
             ]
         );
-        $this->db = $this->mongo->selectDB($options['database']);
+        $this->db = $this->mongo->selectDatabase($options['database']);
         return $this;
     }
 
@@ -147,7 +116,7 @@ class LMongo
     /**
      * 获取Mongo的Collection操作实例.
      * @param $collectionName
-     * @return bool|\MongoCollection
+     * @return bool|\MongoDB\Collection
      */
     public function model($collectionName)
     {
