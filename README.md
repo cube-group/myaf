@@ -1,4 +1,5 @@
-## yaf基础封装快速开发环境
+## Miss You Yet Another Framework
+so fast and fast ...
 ### php扩展-yaf
 Mac OS X,推荐homebrew进行安装,举例如下:
 ```
