@@ -43,13 +43,10 @@ class Data
         if (!$conf->mysql || !$conf->mysql->$name) {
             throw new Exception("mysql {$name} connection config is null");
         }
-        if (!$conf->mysql->$name->master) {
-            throw new Exception("mysql {$name} connection master config is null");
-        }
         $key = 'mysql-' . $name;
         if (!isset(self::$connections[$key])) {
             self::$connections[$key] = new LDB(
-                $conf->mysql->$name->master->toArray(),
+                $conf->mysql->$name->master ? $conf->mysql->$name->master->toArray() : $conf->mysql->$name->toArray(),
                 $conf->mysql->$name->slave ? $conf->mysql->$name->slave->toArray() : null
             );
         }
@@ -104,7 +101,7 @@ class Data
     {
         $conf = G::conf();
         if (!$conf->memcache || !$conf->memcache->$name) {
-            throw new Exception("redis {$name} connection config is null");
+            throw new Exception("memcache {$name} connection config is null");
         }
         $key = 'memcache-' . $name;
         if (!isset(self::$connections[$key])) {
@@ -119,15 +116,18 @@ class Data
      * @return mixed
      * @throws Exception
      */
-    public static function queueRedis($name = 'default')
+    public static function mqRedis($name = 'default')
     {
         $conf = G::conf();
-        if (!$conf->queue->redis || !$conf->queue->redis->$name) {
-            throw new Exception("queue.redis {$name} connection config is null");
+        if (!$conf->redis || !$conf->redis->$name) {
+            throw new Exception("mq.redis {$name} connection config is null");
         }
-        $key = 'queue.redis-' . $name;
+        $key = 'mq.redis-' . $name;
         if (!isset(self::$connections[$key])) {
-            self::$connections[$key] = new LRedisMQ($conf->queue->redis->$name->toArray());
+            self::$connections[$key] = new LRedisMQ(
+                $conf->redis->$name->toArray(),
+                self::$connections['redis-' . $name]
+            );
         }
         return self::$connections[$key];
     }
@@ -138,15 +138,15 @@ class Data
      * @return LHttpRabbitMQ
      * @throws Exception
      */
-    public static function queueHttpRabbit($name = 'default')
+    public static function mqHttpRabbit($name = 'default')
     {
         $conf = G::conf();
-        if (!$conf->queue->redis || !$conf->queue->redis->$name) {
-            throw new Exception("queue.rabbit {$name} connection config is null");
+        if (!$conf->rabbit || !$conf->rabbit->$name) {
+            throw new Exception("mq.rabbit {$name} connection config is null");
         }
-        $key = 'queue.http.rabbit-' . $name;
+        $key = 'mq.rabbit.http-' . $name;
         if (!isset(self::$connections[$key])) {
-            self::$connections[$key] = new LHttpRabbitMQ($conf->queue->redis->$name->toArray());
+            self::$connections[$key] = new LHttpRabbitMQ($conf->rabbit->$name->toArray());
         }
         return self::$connections[$key];
     }
@@ -157,15 +157,15 @@ class Data
      * @return LRabbitMQ
      * @throws Exception
      */
-    public static function queueRabbit($name = 'default')
+    public static function mqRabbit($name = 'default')
     {
         $conf = G::conf();
-        if (!$conf->queue->redis || !$conf->queue->redis->$name) {
-            throw new Exception("queue.rabbit {$name} connection config is null");
+        if (!$conf->rabbit || !$conf->rabbit->$name) {
+            throw new Exception("mq.rabbit {$name} connection config is null");
         }
-        $key = 'queue.rabbit-' . $name;
+        $key = 'mq.rabbit.ext-' . $name;
         if (!isset(self::$connections[$key])) {
-            self::$connections[$key] = new LRabbitMQ($conf->queue->redis->$name->toArray());
+            self::$connections[$key] = new LRabbitMQ($conf->rabbit->$name->toArray());
         }
         return self::$connections[$key];
     }

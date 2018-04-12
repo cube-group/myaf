@@ -53,41 +53,6 @@ class CommonUtil
     }
 
     /**
-     * 获取HTTP头部中埋点信息
-     *
-     * @param string $key 头部字段中包含的字段名
-     * @return array|string
-     */
-    public static function header($key = '')
-    {
-        $keyArray = [
-            'ISLOCATE',             //是否开启定位
-            'MODEL',                //手机品牌型号
-            'NETWORKTYPE',          //网络情况
-            'OSVERSION',            //手机系统版本号
-            'PHONENUMBER',          //手机号
-            'PACKAGE',              //应用程序包名
-            'SERIALNUMBER',         //手机序列号
-            'TYPE',                 //手机系统  1：安卓，2：IOS
-            'VERSION',              //福佑接口版本号
-            'CLIENTOS',                //司机模块 - 手机系统  2-android， 3-ios
-        ];
-        $params = [];
-        foreach ($_SERVER as $k => $v) {
-            $arr = explode('_', $k);
-            if ($arr[0] == 'HTTP' && in_array($arr[1], $keyArray)) {
-                $params[$arr[1]] = rawurldecode($v);
-            }
-        }
-
-        if ($key) {
-            return isset($params[$key]) ? $params[$key] : '';
-        } else {
-            return $params;
-        }
-    }
-
-    /**
      * 数据类型转换
      *
      * @param mixed $v

@@ -30,15 +30,21 @@ class LRedisMQ implements IMQ
     }
 
     /**
-     * initialize
-     * @param $options
+     * 初始化连接
+     * @param $options array 配置连接
+     * @param null $redis LRedis实例
+     * @throws Exception
      */
-    protected function init($options)
+    protected function init($options, $redis = null)
     {
-        if (!$options || $this->redis) {
-            return;
+        if ($redis && $redis instanceof LRedis) {
+            $this->redis = $redis;
+        } else {
+            if (!$options) {
+                throw new Exception('LRedisMQ options is null');
+            }
+            $this->redis = new LRedis($options);
         }
-        $this->redis = new LRedis($options);
     }
 
     /**
