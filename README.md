@@ -31,18 +31,29 @@ yaf.cache_config=1
 ;;yaf扩展
 extension="yaf.so"
 ```
-### 3. yaf目录说明
+### 3. yaf目录和常量说明
+主目录:<br>
 * application: 业务核心代码
 * bin: cli模式下的框架入口,如:php bin/cli xx/xx
 * conf: 配置文件目录
 * public: web静态文件目录和index.php入口
-### application目录说明
+
+application目录:<br>
 * controllers: 路由目录
 * library: 本地类库代码目录
 * models: 模型目录
 * modules: 多模块目录(必须在conf/application.ini中开启application.modules='xx,xx'才会开启)
 * plugins: 插件目录
 * views: 模板目录
+
+常量Constants:<br>
+* APP_MODE 环境标识,如:develop、production
+* APP_PATH 项目根目录application
+* APP_CONFIG 当前环境下业务配置文件地址
+* FRAMEWORK_ERR_NOTFOUND_MODULE 错误码515
+* FRAMEWORK_ERR_NOTFOUND_CONTROLLER 错误码516
+* FRAMEWORK_ERR_NOTFOUND_ACTION 错误码517
+* FRAMEWORK_ERR_NOTFOUND_VIEW 错误码518
 ### 4. yaf请求流入顺序
 1. 请求进入nginx被转发到fastcgi的fpm的子进程接收
 2. 初始化各种php配置、载入扩展、函数指针等

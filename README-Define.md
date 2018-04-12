@@ -1,9 +1,0 @@
-## Define全局常量
-### 全局常量枚举
-* APP_MODE 环境标识,如:develop、product
-* APP_PATH 项目根目录application
-* APP_CONFIG 当前环境下业务配置文件地址
-* FRAMEWORK_ERR_NOTFOUND_MODULE 错误码515
-* FRAMEWORK_ERR_NOTFOUND_CONTROLLER 错误码516
-* FRAMEWORK_ERR_NOTFOUND_ACTION 错误码517
-* FRAMEWORK_ERR_NOTFOUND_VIEW 错误码518

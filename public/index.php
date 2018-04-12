@@ -2,11 +2,11 @@
 
 //APP_PATH: yaf root dir
 //APP_CONFIG: yaf framework config file
-//APP_MODE: env mode type ,such as product/develop
+//APP_MODE: env mode type ,such as production/develop
 
 use Yaf\Application;
 
-define('APP_MODE_PRODUCT', 'product');
+define('APP_MODE_PRODUCT', 'production');
 define('APP_MODE_DEVELOP', 'develop');
 
 define('APP_PATH', __DIR__ . '/..');
