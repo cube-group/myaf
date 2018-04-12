@@ -61,8 +61,7 @@ application目录:<br>
 4. 读入conf/application.ini配置文件
 5. 进入application/Bootstrap.php文件
 6. Bootstrap中按照从上往下执行以_init开头的函数
-7. 执行各种_initPlugins中的插件(<a href='http://www.laruence.com/manual/yaf.plugin.times.html'>yaf支持的hook</a><br>)
-   可以配合框架中的Router.php和Static.php两个插件文件进行学习
+7. 执行各种_initPlugins中的插件(<a href='http://www.laruence.com/manual/yaf.plugin.times.html'>yaf支持的hook</a><br>)可以配合框架中的Router.php和Static.php两个插件文件进行学习
 8. Router路由功能解析出module、controller、action并命中相应的controller文件
 9. 若未命中则会命中相应module中的ErrorController::errorAction
 10. 若相应的module中没有ErrorController则命中application/controllers/Error.php中的ErrorController::errorAction
