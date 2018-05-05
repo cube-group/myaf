@@ -244,13 +244,10 @@ application.view.ext = "phtml"
 ```php
 <?php
 
-use Core\ControlWeb;
-use Core\G;
-
 /**
  * Class IndexController.
  */
-class IndexController extends WebController
+class IndexController extends \Myaf\Core\WebController
 {
     public function indexAction()
     {
@@ -434,34 +431,34 @@ $queue->consumeStatus(true);//or false
 ### 24. 操作log
 你可以在任意Controller、Model类中使用LLog
 ```php
-use Myaf\Log\LLog;
+use Myaf\Log\Log;
 
 //LLog初始化,app名称为name,日志存储路径为/data/log/name,非debug
-LLog::init('name', '/data/log/name', 'Asia/Shanghai', false);
+Log::init('name', '/data/log/name', 'Asia/Shanghai', false);
 //但是myaf框架已經在G類中初始化過了只需要LLog::info或debug或error即可
 //debug日志
-LLog::info('功能1',__FILE__,'HelloWorld');
-LLog::info('功能1',__FILE__,'Json:',['status'=>'Y']);
+Log::info('功能1',__FILE__,'HelloWorld');
+Log::info('功能1',__FILE__,'Json:',['status'=>'Y']);
 //错误日志
-LLog::error('功能2',__FILE__,'SendData:',['a'=>'123123']);
+Log::error('功能2',__FILE__,'SendData:',['a'=>'123123']);
 //...logic
 //日志压栈存储
-LLog::flush();
+Log::flush();
 ```
 详细查看Log包中的README
 ### 25. 定时任务
 即将支持
 ### 26. 网络请求工具
-\Myaf\Net/LCurl<br>
+Myaf\Net\LCurl<br>
 * 支持常见的get、post、put、head、delete请求
 * 支持的post data格式有form-data、form-urlencoded、json、raw、xml、ajax
 
 ### 27. 分页小工具
-\Myaf\Utils\PageUtil<br>
+Myaf\Utils\PageUtil<br>
 ```
 //如下总条数100,每页显示10条,当前页码为8,get参数集为uid=3
 //getPagination会输出bootstrap ul元素
-use \Myaf\Utils\PageUtil;
+use Myaf\Utils\PageUtil;
 
 echo PageUtil::create(100, 10, 8, ['uid' => 3])->getPagination('/index');
 ```
@@ -472,6 +469,6 @@ echo PageUtil::create(100, 10, 8, ['uid' => 3])->getPagination('/index');
 * net: https://github.com/cube-group/myaf-net
 * utils: https://github.com/cube-group/myaf-utils
 * validator: https://github.com/cube-group/myaf-validator
-* doc: https://github.com/cube-group/myaf-doc
-* image: https://github.com/cube-group/myaf-image
-* pdf: https://github.com/cube-group/myaf-pdf
+* doc: https://github.com/cube-group/myaf-doc (coming soon)
+* image: https://github.com/cube-group/myaf-image (coming soon)
+* pdf: https://github.com/cube-group/myaf-pdf (coming soon)
