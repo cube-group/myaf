@@ -1,12 +1,10 @@
 <?php
-
-use Core\ControlConsole;
-use Core\G;
+use Myaf\Core\G;
 
 /**
  * Class TestController
  */
-class ConsoleController extends ControlConsole
+class ConsoleController extends \Myaf\Core\ConsoleController
 {
     public function indexAction()
     {

@@ -1,23 +1,202 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b02029ff94193e54711e937cd71f1a9f",
+    "content-hash": "60bc47add19deb46be860b017e5b3356",
     "packages": [
         {
-            "name": "mongodb/mongodb",
-            "version": "1.3.1",
+            "name": "cube-group/myaf-core",
+            "version": "v0.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "7417ecf1ca5aef263d3e2fdc4ace214f7fd1b750"
+                "url": "https://github.com/cube-group/myaf-core.git",
+                "reference": "511448341be26bc3ae60a31b3ad8e956e91d896f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/mongodb/mongo-php-library/7417ecf1ca5aef263d3e2fdc4ace214f7fd1b750.zip",
-                "reference": "7417ecf1ca5aef263d3e2fdc4ace214f7fd1b750",
+                "url": "https://api.github.com/repos/cube-group/myaf-core/zipball/511448341be26bc3ae60a31b3ad8e956e91d896f",
+                "reference": "511448341be26bc3ae60a31b3ad8e956e91d896f",
+                "shasum": ""
+            },
+            "require": {
+                "cube-group/myaf-log": "*",
+                "cube-group/myaf-net": "*",
+                "cube-group/myaf-utils": "*",
+                "mongodb/mongodb": "^1.3.2",
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Myaf\\Core\\": "src/core/",
+                    "Myaf\\Cache\\": "src/cache/",
+                    "Myaf\\Mongo\\": "src/mongo/",
+                    "Myaf\\MQ\\": "src/mq/",
+                    "Myaf\\Mysql\\": "src/mysql/",
+                    "Myaf\\Pool\\": "src/pool/",
+                    "Myaf\\Session\\": "src/session/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "linyang",
+                    "email": "linyang@offcn.com"
+                },
+                {
+                    "name": "chenqionghe",
+                    "email": "chenqionghe@offcn.com"
+                }
+            ],
+            "description": "core",
+            "keywords": [
+                "base"
+            ],
+            "time": "2018-05-05T11:27:16+00:00"
+        },
+        {
+            "name": "cube-group/myaf-log",
+            "version": "v0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cube-group/myaf-log.git",
+                "reference": "80206f134275025b77d0fcb2e2a1af127facbdac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cube-group/myaf-log/zipball/80206f134275025b77d0fcb2e2a1af127facbdac",
+                "reference": "80206f134275025b77d0fcb2e2a1af127facbdac",
+                "shasum": ""
+            },
+            "require": {
+                "cube-group/myaf-utils": "*",
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Myaf\\Log\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "linyang",
+                    "email": "linyang@offcn.com"
+                },
+                {
+                    "name": "chenqionghe",
+                    "email": "chenqionghe@offcn.com"
+                }
+            ],
+            "description": "log",
+            "keywords": [
+                "base"
+            ],
+            "time": "2018-05-05T11:21:53+00:00"
+        },
+        {
+            "name": "cube-group/myaf-net",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cube-group/myaf-net.git",
+                "reference": "0ad9b06e5aa5930dbc8ca90708d8249e2685c4d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cube-group/myaf-net/zipball/0ad9b06e5aa5930dbc8ca90708d8249e2685c4d7",
+                "reference": "0ad9b06e5aa5930dbc8ca90708d8249e2685c4d7",
+                "shasum": ""
+            },
+            "require": {
+                "cube-group/myaf-log": "*",
+                "cube-group/myaf-utils": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Myaf\\Net\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "linyang",
+                    "email": "linyangflash@163.com"
+                },
+                {
+                    "name": "chenqionghe"
+                }
+            ],
+            "description": "net",
+            "keywords": [
+                "base"
+            ],
+            "time": "2018-05-05T11:33:38+00:00"
+        },
+        {
+            "name": "cube-group/myaf-utils",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cube-group/myaf-utils.git",
+                "reference": "b8dacf5d5a56868d18444e52cdc71006278e4f50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cube-group/myaf-utils/zipball/b8dacf5d5a56868d18444e52cdc71006278e4f50",
+                "reference": "b8dacf5d5a56868d18444e52cdc71006278e4f50",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Myaf\\Utils\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "linyang",
+                    "email": "linyangflash@163.com"
+                },
+                {
+                    "name": "chenqionghe"
+                }
+            ],
+            "description": "utils",
+            "keywords": [
+                "base"
+            ],
+            "time": "2018-05-05T11:36:11+00:00"
+        },
+        {
+            "name": "mongodb/mongodb",
+            "version": "1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mongodb/mongo-php-library.git",
+                "reference": "b9f35916125976533f4b1e67a4a0ee7baf1d3bb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/b9f35916125976533f4b1e67a4a0ee7baf1d3bb9",
+                "reference": "b9f35916125976533f4b1e67a4a0ee7baf1d3bb9",
                 "shasum": ""
             },
             "require": {
@@ -69,7 +248,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2018-03-19T18:40:25+00:00"
+            "time": "2018-04-19T17:20:30+00:00"
         }
     ],
     "packages-dev": [],

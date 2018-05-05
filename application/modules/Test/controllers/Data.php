@@ -1,12 +1,11 @@
 <?php
 
-use Core\ControlWeb;
-use Core\Data;
+use Myaf\Pool\Data;
 
 /**
  * Class UsersController
  */
-class DataController extends ControlWeb
+class DataController extends \Myaf\Core\WebController
 {
     public function init()
     {

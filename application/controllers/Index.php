@@ -1,12 +1,12 @@
 <?php
 
-use Core\ControlWeb;
-use Core\G;
+use Myaf\Core\G;
+use Myaf\Core\WebController;
 
 /**
  * Class IndexController.
  */
-class IndexController extends ControlWeb
+class IndexController extends WebController
 {
     public function indexAction()
     {

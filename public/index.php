@@ -6,7 +6,7 @@
 
 use Yaf\Application;
 
-define('APP_MODE_PRODUCT', 'production');
+define('APP_MODE_PRODUCTION', 'production');
 define('APP_MODE_DEVELOP', 'develop');
 
 define('APP_PATH', __DIR__ . '/..');

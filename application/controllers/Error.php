@@ -1,13 +1,13 @@
 <?php
 
-use Core\ControlWeb;
-use Core\G;
+use Myaf\Core\G;
+use Myaf\Core\WebController;
 
 /**
  * Class ErrorController.
  * 框架错误处理.
  */
-class ErrorController extends ControlWeb
+class ErrorController extends WebController
 {
     /**
      * router error.

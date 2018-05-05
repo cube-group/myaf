@@ -1,6 +1,6 @@
 <?php
 
-use Core\G;
+use Myaf\Core\G;
 use Yaf\Dispatcher;
 use Yaf\Plugin_Abstract;
 use Yaf\Request_Abstract;

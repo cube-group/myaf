@@ -1,7 +1,7 @@
 <?php
 
-use Core\Data;
-use Base\Orm\LActiveRecord;
+use Myaf\Mysql\LActiveRecord;
+use Myaf\Pool\Data;
 
 /**
  * Class UserModel.

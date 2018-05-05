@@ -1,15 +1,15 @@
 <?php
-
-use Core\ControlRest;
+use Myaf\Core\G;
 
 /**
  * Class IndexController
  * Restful Mode
  */
-class RestController extends ControlRest
+class RestController extends \Myaf\Core\RestController
 {
     public function _404Action()
     {
+        G::code(404);
         $this->response(false, ['type' => $this->_request->method], 404);
     }
 

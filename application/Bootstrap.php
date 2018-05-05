@@ -1,7 +1,6 @@
 <?php
 
-use Core\D;
-use Core\G;
+use Myaf\Core\G;
 use Yaf\Bootstrap_Abstract;
 use Yaf\Dispatcher;
 
@@ -20,8 +19,16 @@ class Bootstrap extends Bootstrap_Abstract
         $dispatcher->disableView();
         $dispatcher->autoRender(false);
 
+        $ini = $dispatcher->getApplication()->getConfig();
+        if ($ini->application->timezone) {
+            date_default_timezone_set($ini->application->timezone);
+        }
+        if ($ini->application->autoload) {
+            require $ini->application->autoload;
+        }
+
         //初始化全局配置
-        G::init($dispatcher->getApplication()->getConfig());
+        G::init($ini, APP_MODE != APP_MODE_PRODUCTION);
     }
 
     /**
