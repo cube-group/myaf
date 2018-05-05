@@ -44,7 +44,7 @@ extension="yaf.so"
 
 application目录:<br>
 * controllers: 路由目录
-* library: 本地类库代码目录
+* library: 本地类库代码目录(必須在conf/application.ini中開啟application.libraryNamespace="xx,xx"才會啟用)
 * models: 模型目录
 * modules: 多模块目录(必须在conf/application.ini中开启application.modules='xx,xx'才会开启)
 * plugins: 插件目录
@@ -341,7 +341,7 @@ $db = Data::db('default');
 $result = $db->query('select ?,? from table',['id','username']);
 ```
 * 以ORM形式执行sql
-详见文件application/library/Base/Orm/README.md
+详见LActiveRecord
 
 ### 18. 操作redis
 ```php
@@ -455,7 +455,6 @@ LLog::flush();
 \Myaf\Net/LCurl<br>
 * 支持常见的get、post、put、head、delete请求
 * 支持的post data格式有form-data、form-urlencoded、json、raw、xml、ajax
-* 帮助详见application/library/Base/Curl/README.md
 
 ### 27. 分页小工具
 \Myaf\Utils\PageUtil<br>
