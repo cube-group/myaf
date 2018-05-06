@@ -447,7 +447,7 @@ Log::flush();
 ```
 详细查看Log包中的README
 ### 25. 定时任务
-即将支持
+需要配合基础docker<a href="https://github.com/cube-group/base-image-apn">镜像apn</a>
 ### 26. 网络请求工具
 Myaf\Net\LCurl<br>
 * 支持常见的get、post、put、head、delete请求
