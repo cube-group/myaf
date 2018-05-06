@@ -340,6 +340,25 @@ $result = $db->query('select ?,? from table',['id','username']);
 * 以ORM形式执行sql
 详见LActiveRecord
 
+### 17.5 操作redis session
+session的使用我们强烈建立您放弃php自带的$_SESSION改用无状态的redisSession
+```php
+Data::session($name);$name默认为```session```,$name会在application.ini进行关联<br>
+```
+配置文件片段:
+```ini
+;redis config
+redis.session.host = "127.0.0.1"
+redis.session.port = 6379
+redis.session.database = "0"
+redis.session.password = ""
+redis.session.timeout = 2
+```
+Demo:
+```php
+$result = Data::session()->get('userid');
+```
+
 ### 18. 操作redis
 ```php
 Data::redis($name);$name默认为default,$name会在application.ini进行关联<br>
