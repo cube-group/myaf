@@ -1,5 +1,5 @@
 ## Miss You Yet Another Framework
-so fast and fast ...
+so fast and fast ... 这是基于yaf扩展的封装框架基础项目库，可以配合myaf-* composer包进行开发。
 ### php版本要求
 ```
 >= 5.6
