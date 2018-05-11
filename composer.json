@@ -1,8 +1,12 @@
 {
   "repositories": {
+    "0": {
+      "type": "composer",
+      "url": "https://packages.eoffcn.com/"
+    },
     "packagist": {
       "type": "composer",
-      "url": "https://packagist.org/"
+      "url": "https://packagist.phpcomposer.com"
     }
   },
   "require": {

@@ -1,5 +1,5 @@
 ## Miss You Yet Another Framework
-so fast and fast ... 这是基于yaf扩展的封装框架基础项目库，可以配合myaf-* composer包进行开发。
+so fast and fast ...
 ### php版本要求
 ```
 >= 5.6
@@ -244,10 +244,13 @@ application.view.ext = "phtml"
 ```php
 <?php
 
+use Core\ControlWeb;
+use Core\G;
+
 /**
  * Class IndexController.
  */
-class IndexController extends \Myaf\Core\WebController
+class IndexController extends WebController
 {
     public function indexAction()
     {
@@ -340,25 +343,6 @@ $result = $db->query('select ?,? from table',['id','username']);
 * 以ORM形式执行sql
 详见LActiveRecord
 
-### 17.5 操作redis session
-session的使用我们强烈建立您放弃php自带的$_SESSION改用无状态的redisSession
-```php
-Data::session($name);$name默认为```session```,$name会在application.ini进行关联<br>
-```
-配置文件片段:
-```ini
-;redis config
-redis.session.host = "127.0.0.1"
-redis.session.port = 6379
-redis.session.database = "0"
-redis.session.password = ""
-redis.session.timeout = 2
-```
-Demo:
-```php
-$result = Data::session()->get('userid');
-```
-
 ### 18. 操作redis
 ```php
 Data::redis($name);$name默认为default,$name会在application.ini进行关联<br>
@@ -450,46 +434,44 @@ $queue->consumeStatus(true);//or false
 ### 24. 操作log
 你可以在任意Controller、Model类中使用LLog
 ```php
-use Myaf\Log\Log;
+use Myaf\Log\LLog;
 
 //LLog初始化,app名称为name,日志存储路径为/data/log/name,非debug
-Log::init('name', '/data/log/name', 'Asia/Shanghai', false);
+LLog::init('name', '/data/log/name', 'Asia/Shanghai', false);
 //但是myaf框架已經在G類中初始化過了只需要LLog::info或debug或error即可
 //debug日志
-Log::info('功能1',__FILE__,'HelloWorld');
-Log::info('功能1',__FILE__,'Json:',['status'=>'Y']);
+LLog::info('功能1',__FILE__,'HelloWorld');
+LLog::info('功能1',__FILE__,'Json:',['status'=>'Y']);
 //错误日志
-Log::error('功能2',__FILE__,'SendData:',['a'=>'123123']);
+LLog::error('功能2',__FILE__,'SendData:',['a'=>'123123']);
 //...logic
 //日志压栈存储
-Log::flush();
+LLog::flush();
 ```
 详细查看Log包中的README
 ### 25. 定时任务
-* 需要项目根目录支持<a href="https://github.com/cube-group/myaf/blob/master/cron.json">cron.json</a>
-* 基础docker镜像：<a href="https://github.com/cube-group/base-image-apn">镜像apn</a>
-* docker hub镜像：<a href="https://hub.docker.com/r/lin2798003/apn/">docker hub</a>
+即将支持
 ### 26. 网络请求工具
-Myaf\Net\LCurl<br>
+\Myaf\Net/LCurl<br>
 * 支持常见的get、post、put、head、delete请求
 * 支持的post data格式有form-data、form-urlencoded、json、raw、xml、ajax
 
 ### 27. 分页小工具
-Myaf\Utils\PageUtil<br>
+\Myaf\Utils\PageUtil<br>
 ```
 //如下总条数100,每页显示10条,当前页码为8,get参数集为uid=3
 //getPagination会输出bootstrap ul元素
-use Myaf\Utils\PageUtil;
+use \Myaf\Utils\PageUtil;
 
 echo PageUtil::create(100, 10, 8, ['uid' => 3])->getPagination('/index');
 ```
 
 ### 28.更多工具包
-* core: https://github.com/cube-group/myaf-core
-* log: https://github.com/cube-group/myaf-log
-* net: https://github.com/cube-group/myaf-net
-* utils: https://github.com/cube-group/myaf-utils
-* validator: https://github.com/cube-group/myaf-validator
-* doc: https://github.com/cube-group/myaf-doc (coming soon)
-* image: https://github.com/cube-group/myaf-image (coming soon)
-* pdf: https://github.com/cube-group/myaf-pdf (coming soon)
+* 框架核心包: https://github.com/cube-group/myaf-core
+* 日志包: https://github.com/cube-group/myaf-log
+* 网络处理包: https://github.com/cube-group/myaf-net
+* 工具包: https://github.com/cube-group/myaf-utils
+* 验证包: https://github.com/cube-group/myaf-validator
+* 图形处理: https://github.com/cube-group/myaf-image
+* 文档工具: https://github.com/cube-group/myaf-doc (coming soon...)
+* pdf: https://github.com/cube-group/myaf-pdf (coming soon...)
