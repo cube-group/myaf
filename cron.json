@@ -1,6 +1,13 @@
-[
-  {
-    "time": "* * * * * *",
-    "value": "echo hello"
-  }
-]
+{
+  "hook": "https://oapi.dingtalk.com/robot/send?access_token=7feb7a1d1986c4c9f8090782122df373dd03b2b76f0641103b30432030a9d754",
+  "jobs": [
+    {
+      "time": "* * * * * *",
+      "value": "echo hello"
+    },
+    {
+      "time": "*/15 * * * * *",
+      "value": "x hello"
+    }
+  ]
+}
