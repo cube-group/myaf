@@ -450,7 +450,9 @@ LLog::flush();
 ```
 详细查看Log包中的README
 ### 25. 定时任务
-即将支持
+* 详见https://hub.docker.com/r/lin2798003/apn/
+* 项目根目录支持cron.json
+
 ### 26. 网络请求工具
 \Myaf\Net/LCurl<br>
 * 支持常见的get、post、put、head、delete请求
@@ -465,13 +467,38 @@ use \Myaf\Utils\PageUtil;
 
 echo PageUtil::create(100, 10, 8, ['uid' => 3])->getPagination('/index');
 ```
+### 28. yaf ide帮助
+https://github.com/elad-yosifon/php-yaf-doc
 
-### 28.更多工具包
+### 29.更多工具包
 * 框架核心包: https://github.com/cube-group/myaf-core
+```
+composer install cube-group/myaf-core
+```
+
 * 日志包: https://github.com/cube-group/myaf-log
+```
+composer install cube-group/myaf-log
+```
+
 * 网络处理包: https://github.com/cube-group/myaf-net
+```
+composer install cube-group/myaf-net
+```
 * 工具包: https://github.com/cube-group/myaf-utils
+```
+composer install cube-group/myaf-utils
+```
+
 * 验证包: https://github.com/cube-group/myaf-validator
+```
+composer install cube-group/myaf-validator
+```
+
 * 图形处理: https://github.com/cube-group/myaf-image
+```
+composer install cube-group/myaf-image
+```
+
 * 文档工具: https://github.com/cube-group/myaf-doc (coming soon...)
 * pdf: https://github.com/cube-group/myaf-pdf (coming soon...)
