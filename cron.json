@@ -7,7 +7,7 @@
     },
     {
       "time": "*/15 * * * * *",
-      "value": "x hello"
+      "value": "ls -al $APP_PATH"
     }
   ]
 }

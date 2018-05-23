@@ -16,7 +16,7 @@ class UserModel extends LActiveRecord
     public function database()
     {
         // TODO: Implement database() method.
-        return Data::db('default');
+        return Data::db();
     }
 
     /**

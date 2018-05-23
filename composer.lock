@@ -112,16 +112,16 @@
         },
         {
             "name": "cube-group/myaf-core",
-            "version": "v0.0.3",
+            "version": "0.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cube-group/myaf-core.git",
-                "reference": "bcd1070bd09f4743d9100c404837b94cd3da01cf"
+                "reference": "e7fabc831a4963e8fade52b208c4195b22b8dce5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/cube-group/myaf-core/bcd1070bd09f4743d9100c404837b94cd3da01cf.zip",
-                "reference": "bcd1070bd09f4743d9100c404837b94cd3da01cf",
+                "url": "https://files.phpcomposer.com/files/cube-group/myaf-core/e7fabc831a4963e8fade52b208c4195b22b8dce5.zip",
+                "reference": "e7fabc831a4963e8fade52b208c4195b22b8dce5",
                 "shasum": ""
             },
             "require": {
@@ -160,7 +160,7 @@
             "keywords": [
                 "base"
             ],
-            "time": "2018-05-06T04:39:45+00:00"
+            "time": "2018-05-17T06:53:19+00:00"
         },
         {
             "name": "cube-group/myaf-log",
