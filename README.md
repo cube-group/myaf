@@ -228,6 +228,16 @@ $php bin/cli module/controller/action p1 p2
 注意:
 1. 单参数时,action函数接收的是值
 2. 多参数时,action函数接受的是数组
+3. 接受方式如下:
+```php
+class CmdController extends ConsoleController
+{
+    public function indexAction()
+    {
+        $this->json(['value' => G::route(), 'params' => $this->params()]);
+    }
+}
+```
 
 ### 15. 模板渲染
 * yaf中的默认模板文件扩展名是phtml(当然可以在application.ini中进行修改)
@@ -432,21 +442,21 @@ $message = $queue->consume('channel_router_key');
 $queue->consumeStatus(true);//or false
 ```
 ### 24. 操作log
-你可以在任意Controller、Model类中使用LLog
+你可以在任意Controller、Model类中使用Log
 ```php
-use Myaf\Log\LLog;
+use Myaf\Log\Log;
 
-//LLog初始化,app名称为name,日志存储路径为/data/log/name,非debug
-LLog::init('name', '/data/log/name', 'Asia/Shanghai', false);
-//但是myaf框架已經在G類中初始化過了只需要LLog::info或debug或error即可
+//Log初始化,app名称为name,日志存储路径为/data/log/name,非debug
+Log::init('name', '/data/log/name', 'Asia/Shanghai', false);
+//但是myaf框架已經在G類中初始化過了只需要Log::info或debug或error即可
 //debug日志
-LLog::info('功能1',__FILE__,'HelloWorld');
-LLog::info('功能1',__FILE__,'Json:',['status'=>'Y']);
+Log::info('功能1',__FILE__,'HelloWorld');
+Log::info('功能1',__FILE__,'Json:',['status'=>'Y']);
 //错误日志
-LLog::error('功能2',__FILE__,'SendData:',['a'=>'123123']);
+Log::error('功能2',__FILE__,'SendData:',['a'=>'123123']);
 //...logic
 //日志压栈存储
-LLog::flush();
+Log::flush();
 ```
 详细查看Log包中的README
 ### 25. 定时任务
