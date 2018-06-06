@@ -353,6 +353,20 @@ $result = $db->query('select ?,? from table',['id','username']);
 * 以ORM形式执行sql
 详见LActiveRecord
 
+### 17.5 操作session
+我们强烈建议您放弃$_SESSION,因为基于docker多点容器分布是不定向传递的
+```php
+Data::session($name);//$name默认是session,$name会在application.ini进行关联<br>
+```
+配置文件片段:
+```ini
+redis.session.host = "127.0.0.1"
+redis.session.port = 6379
+redis.session.database = 1
+redis.session.password = ""
+redis.session.timeout = 2
+```
+
 ### 18. 操作redis
 ```php
 Data::redis($name);$name默认为default,$name会在application.ini进行关联<br>
