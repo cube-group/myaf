@@ -276,7 +276,9 @@ class IndexController extends WebController
 * 其它模块错误会优先到该模块的controllers/Error.php,若未命中application/controllers/Error.php的ErrorController::errorAction
 
 ### 17. 操作mysql
-Data::db($name);$name默认为default,会在application.ini进行关联<br>
+```php
+Data::db($name);//$name默认为default,会在application.ini进行关联
+```
 主从配置时Data::db会自动根据curd方式进行选择主还是从,无需额外操作
 ```ini
 ;mysql单主配置
@@ -356,7 +358,7 @@ $result = $db->query('select ?,? from table',['id','username']);
 ### 17.5 操作session
 我们强烈建议您放弃$_SESSION,因为基于docker多点容器分布是不定向传递的
 ```php
-Data::session($name);//$name默认是session,$name会在application.ini进行关联<br>
+Data::session($name);//$name默认是session,$name会在application.ini进行关联
 ```
 配置文件片段:
 ```ini
@@ -369,7 +371,7 @@ redis.session.timeout = 2
 
 ### 18. 操作redis
 ```php
-Data::redis($name);$name默认为default,$name会在application.ini进行关联<br>
+Data::redis($name);//$name默认为default,$name会在application.ini进行关联
 ```
 配置文件片段:
 ```ini
@@ -385,7 +387,9 @@ Demo:
 $result = Data::redis()->hGetAll('ssid-32f84c1912100c85eaf6c2db619d3ee6');
 ```
 ### 19. 操作memcache
-Data::redis($name);$name默认为default,$name会在application.ini进行关联<br>
+```php
+Data::redis($name);//$name默认为default,$name会在application.ini进行关联
+```
 配置文件片段:
 ```ini
 ;memcache config
@@ -398,7 +402,7 @@ Demo:
 $result = Data::memcache()->get('xxx');
 ```
 ### 20. 操作mongodb
-Data::mongo($name);$name默认为default,$name会在application.ini进行关联<br>
+Data::mongo($name);//$name默认为default,$name会在application.ini进行关联
 配置文件片段:
 ```ini
 ;mongo
@@ -416,7 +420,7 @@ $rt = Data::mongo()->model('collect')->findOne(['a' => 1]);
 var_dump($rt);
 ```
 ### 21. 操作redis队列
-Data::mqRedis($name);$name默认为default,$name会在application.ini进行关联<br>
+Data::mqRedis($name);//$name默认为default,$name会在application.ini进行关联
 配置文件片段:跟redis一致
 ```php
 $queue = Data::mqRedis();
@@ -430,7 +434,7 @@ $message = $queue->consume('channel_router_key');
 $queue->consumeStatus(true);//or false
 ```
 ### 22. 操作rabbitmq队列(HTTP RESTFUL API)
-Data::mqHttpRabbit($name);其中$name在application.ini中配置
+Data::mqHttpRabbit($name);//其中$name在application.ini中配置
 ```php
 $queue = Data::mqHttpRabbit();
 //生产
@@ -443,7 +447,7 @@ $message = $queue->consume('channel_router_key', 5);
 $queue->consumeStatus(true);//or false
 ```
 ### 23. 操作rabbitmq队列(以amqp扩展形式)
-Data::mqRabbit($name);其中$name在application.ini中配置
+Data::mqRabbit($name);//其中$name在application.ini中配置
 ```php
 $queue = Data::mqRabbit();
 //生产
