@@ -480,6 +480,8 @@ Log::flush();
 ### 25. 定时任务
 * 详见https://hub.docker.com/r/lin2798003/apn/
 * 项目根目录支持cron.json
+* time格式：秒 分 时 日 月 周 * * * * * *
+* time格式：分 时 日 月 周 * * * * *
 
 ### 26. 网络请求工具
 \Myaf\Net/LCurl<br>
