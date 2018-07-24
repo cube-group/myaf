@@ -10,6 +10,7 @@
     }
   },
   "require": {
-    "cube-group/myaf-core": "*"
+    "cube-group/myaf-core": "*",
+    "base/log-tail":"*"
   }
 }
