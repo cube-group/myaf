@@ -32,5 +32,6 @@ class LogController extends WebController
     {
         $uid = uniqid();
         LogAction::save($uid, 'test-action', ['a' => 1, 'b' => 2]);
+        LogAction::flush();
     }
 }
