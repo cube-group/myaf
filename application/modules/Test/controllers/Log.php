@@ -23,6 +23,7 @@ class LogController extends WebController
         Log::warn(G::route(), $uid, 400, 'warn', ['orderSn' => time()]);
         Log::error(G::route(), $uid, 500, 'debug', ['orderSn' => time()]);
         Log::fatal(G::route(), $uid, 600, 'debug', ['orderSn' => time()]);
+        Log::flush();
     }
 
     /**
