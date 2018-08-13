@@ -12,6 +12,7 @@
   "require": {
     "cube-group/myaf-core": "*",
     "base/log-tail":"*",
-    "khanamiryan/qrcode-detector-decoder": "^1.0"
+    "khanamiryan/qrcode-detector-decoder": "^1.0",
+    "cube-group/myaf-log": "^0.0.9"
   }
 }

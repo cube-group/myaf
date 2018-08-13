@@ -39,10 +39,20 @@ class ErrorController extends WebController
      */
     public function displayAction($code, $message = null)
     {
+        $this->log($message);
         if (G::conf()->common->error->simple) {
             $this->statusCode($code)->shutdown($message, false);
         } else {
             $this->statusCode($code)->display($code, ['message' => $message]);
+        }
+    }
+
+    private function log($value)
+    {
+        if (G::conf()->get("application.dispatcher.log") !== null) {
+            $date = date('Y-m-d H:i:s');
+            $value = "[{$date}] {$value}\n";
+            @file_put_contents(G::conf()->get("application.dispatcher.log"), $value, FILE_APPEND);
         }
     }
 }
