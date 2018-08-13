@@ -4,6 +4,7 @@ use Base\Log\Log;
 use Base\Log\LogAction;
 use Myaf\Core\G;
 use Myaf\Core\WebController;
+use Myaf\Utils\ServerUtil;
 
 /**
  * Created by PhpStorm.
@@ -14,7 +15,7 @@ use Myaf\Core\WebController;
 class LogController extends WebController
 {
     /**
-     * 打印业务日志
+     * 业务类日志测试
      */
     public function indexAction()
     {
@@ -27,12 +28,13 @@ class LogController extends WebController
     }
 
     /**
-     * 统计类日志
+     * 统计类日志测试
      */
     public function statAction()
     {
         $uid = uniqid();
-        LogAction::save($uid, 'test-action', ['a' => 1, 'b' => 2]);
+        LogAction::init('test', 'v0.0.1');
+        LogAction::save($uid, 'test-action', ServerUtil::requestIp(), ['key1' => 1, 'key2' => 2]);
         LogAction::flush();
     }
 }
