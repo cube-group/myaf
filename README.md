@@ -529,5 +529,8 @@ composer install cube-group/myaf-validator
 composer install cube-group/myaf-image
 ```
 
+### 30.框架全局exception错误日志打印
+在conf/application.ini中进行配置,参数为application.dispatcher.log
+
 * 文档工具: https://github.com/cube-group/myaf-doc (coming soon...)
 * pdf: https://github.com/cube-group/myaf-pdf (coming soon...)
