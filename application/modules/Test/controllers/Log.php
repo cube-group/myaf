@@ -34,7 +34,7 @@ class LogController extends WebController
     {
         $uid = uniqid();
         LogAction::init('test', 'v0.0.1');
-        LogAction::save($uid, 'test-action', ServerUtil::requestIp(), ['key1' => 1, 'key2' => 2]);
+        LogAction::save('test-action', $uid, ServerUtil::requestIp(), ['key1' => 1, 'key2' => 2]);
         LogAction::flush();
     }
 }
