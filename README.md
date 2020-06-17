@@ -316,10 +316,11 @@ mysql.demo.slave.charset = "utf8"
 use Myaf\Pool\Data;
 
 $table = Data::db('default')->table('users');
-$result = $table->where(['a'=>1])->limit(0,1)->order('ASC')->group('name')->select(['id','name']);
+$result = $table->
+(['a'=>1])->limit(0,1)->order('ASC')->group('name')->select(['id','name']);
 var_dump($result);
 //$result是多条
-$result = $table->where(['a'=>1])->andWhere('a>1')->orWhere('b'=>[1,2,3])->one();
+$result = $table->where(['a'=>1])->andWhere('a>1')->orWhere(['b'=>[1,2,3]])->one();
 var_dump($result);
 //$result是单条
 ```
